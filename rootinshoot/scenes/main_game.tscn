@@ -1,0 +1,108 @@
+[gd_scene load_steps=8 format=3 uid="uid://dwwchmasl66te"]
+
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_5x3wd"]
+[ext_resource type="PackedScene" uid="uid://7siadqxuhoxt" path="res://scenes/player/player.tscn" id="1_rd60g"]
+[ext_resource type="PackedScene" uid="uid://cxk4d6ojjiulc" path="res://scenes/barrier.tscn" id="2_a2n1u"]
+[ext_resource type="PackedScene" uid="uid://djkxoom8xmb3k" path="res://scenes/enemy/melee_robot.tscn" id="3_uc1rt"]
+[ext_resource type="PackedScene" uid="uid://bn628hp4wx6gy" path="res://scenes/spawner/spawner.tscn" id="5_3i5mv"]
+
+[sub_resource type="GDScript" id="GDScript_qxgl3"]
+script/source = "extends Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_agn0n"]
+size = Vector2(2446, 1690)
+
+[node name="MainGame" type="Node2D"]
+process_mode = 3
+y_sort_enabled = true
+texture_filter = 4
+script = ExtResource("1_5x3wd")
+
+[node name="Player" parent="." instance=ExtResource("1_rd60g")]
+position = Vector2(498, 154)
+
+[node name="StaticBody2D" parent="." instance=ExtResource("2_a2n1u")]
+position = Vector2(258, 280)
+
+[node name="StaticBody2D3" parent="." instance=ExtResource("2_a2n1u")]
+position = Vector2(1602, 95)
+scale = Vector2(1, 100)
+
+[node name="StaticBody2D2" parent="." instance=ExtResource("2_a2n1u")]
+position = Vector2(463, 225)
+
+[node name="MeleeRobot" parent="." instance=ExtResource("3_uc1rt")]
+position = Vector2(329, 156)
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.45098, 0.45098, 0.45098, 0.741176)
+
+[node name="Button2" type="Button" parent="PauseMenu/ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.482
+anchor_top = 0.576
+anchor_right = 0.532
+anchor_bottom = 0.576
+offset_left = -163.264
+offset_top = -97.248
+offset_right = 148.136
+offset_bottom = -42.248
+text = "Resume"
+script = SubResource("GDScript_qxgl3")
+
+[node name="Button3" type="Button" parent="PauseMenu/ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.482
+anchor_top = 0.576
+anchor_right = 0.532
+anchor_bottom = 0.576
+offset_left = -163.264
+offset_top = 25.752
+offset_right = 148.136
+offset_bottom = 80.752
+
+[node name="Button4" type="Button" parent="PauseMenu/ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.482
+anchor_top = 0.576
+anchor_right = 0.532
+anchor_bottom = 0.576
+offset_left = -163.264
+offset_top = 129.752
+offset_right = 148.136
+offset_bottom = 184.752
+text = "Quit"
+
+[node name="Spawner" parent="." instance=ExtResource("5_3i5mv")]
+position = Vector2(357, 208)
+count = -1
+time = 0.3
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Spawner"]
+shape = SubResource("RectangleShape2D_agn0n")
+metadata/_edit_lock_ = true
+
+[connection signal="pressed" from="PauseMenu/ColorRect/Button2" to="." method="pause"]
+[connection signal="button_up" from="PauseMenu/ColorRect/Button4" to="." method="quit"]

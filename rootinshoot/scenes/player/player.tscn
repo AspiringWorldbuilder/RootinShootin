@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://7siadqxuhoxt"]
+
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_an72b"]
+[ext_resource type="Texture2D" uid="uid://dsvewpft7k676" path="res://assets/output.png" id="2_3a1gb"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="3_chy5n"]
+[ext_resource type="Script" path="res://scenes/player/hand.gd" id="4_dkwcd"]
+[ext_resource type="PackedScene" uid="uid://dtj13321fsv65" path="res://scenes/gun/gun.tscn" id="5_5akfa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lrmnu"]
+size = Vector2(60, 60)
+
+[node name="Player" type="CharacterBody2D"]
+process_mode = 1
+collision_layer = 8
+collision_mask = 3
+motion_mode = 1
+floor_stop_on_slope = false
+floor_block_on_wall = false
+script = ExtResource("1_an72b")
+
+[node name="Output" type="Sprite2D" parent="."]
+position = Vector2(-5.96046e-08, 2.84217e-14)
+texture = ExtResource("2_3a1gb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_lrmnu")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+top_level = true
+position_smoothing_speed = 15.0
+script = ExtResource("3_chy5n")
+
+[node name="Hand" type="Node2D" parent="."]
+script = ExtResource("4_dkwcd")
+
+[node name="Gun" parent="Hand" instance=ExtResource("5_5akfa")]

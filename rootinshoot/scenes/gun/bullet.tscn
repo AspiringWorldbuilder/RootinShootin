@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://fo7pgph7cwba"]
+
+[ext_resource type="Script" path="res://scenes/gun/bullet.gd" id="1_16owu"]
+[ext_resource type="Texture2D" uid="uid://b3appw2oubagy" path="res://assets/tempbullet.png" id="2_86ftj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8tg0r"]
+radius = 5.0
+
+[node name="Bullet" type="RigidBody2D"]
+collision_layer = 8
+collision_mask = 3
+gravity_scale = 0.0
+script = ExtResource("1_16owu")
+
+[node name="Tempbullet" type="Sprite2D" parent="."]
+texture = ExtResource("2_86ftj")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8tg0r")
+metadata/_edit_lock_ = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 8.977
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_despawn"]

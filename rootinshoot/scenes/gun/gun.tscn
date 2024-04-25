@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtj13321fsv65"]
+
+[ext_resource type="Script" path="res://scenes/gun/gun.gd" id="1_dnqsl"]
+[ext_resource type="PackedScene" uid="uid://fo7pgph7cwba" path="res://scenes/gun/bullet.tscn" id="2_m1vk3"]
+[ext_resource type="Texture2D" uid="uid://bgqdxsi2q42jv" path="res://assets/tempgun.png" id="3_6qq1f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e4j3k"]
+size = Vector2(34, 29)
+
+[node name="Gun" type="CharacterBody2D"]
+position = Vector2(51, 0)
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_dnqsl")
+bullet = ExtResource("2_m1vk3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_e4j3k")
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(1, 2)
+scale = Vector2(2.35714, 2.35714)
+texture = ExtResource("3_6qq1f")
+
+[node name="barrel_end" type="Node2D" parent="."]
+position = Vector2(18, -9)
+
+[node name="shot_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="reload_timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="shot_timer" to="." method="_chamber"]
+[connection signal="timeout" from="reload_timer" to="." method="_finish_reload"]

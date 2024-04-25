@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn628hp4wx6gy"]
+
+[ext_resource type="Script" path="res://scenes/spawner/spawner.gd" id="1_2nkuw"]
+[ext_resource type="PackedScene" uid="uid://djkxoom8xmb3k" path="res://scenes/enemy/melee_robot.tscn" id="2_to6ll"]
+
+[node name="Spawner" type="Node2D"]
+script = ExtResource("1_2nkuw")
+spawn = ExtResource("2_to6ll")

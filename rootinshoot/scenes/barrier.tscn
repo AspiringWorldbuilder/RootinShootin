@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxk4d6ojjiulc"]
+
+[ext_resource type="Texture2D" uid="uid://khb660gto83" path="res://assets/output2.png" id="1_l561d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5cq0w"]
+
+[node name="StaticBody2D" type="StaticBody2D"]
+collision_mask = 65535
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5cq0w")
+
+[node name="Output2" type="Sprite2D" parent="."]
+modulate = Color(0.513726, 0.788235, 0.529412, 1)
+scale = Vector2(0.15625, 0.15625)
+texture = ExtResource("1_l561d")

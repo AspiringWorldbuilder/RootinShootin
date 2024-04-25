@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://djkxoom8xmb3k"]
+
+[ext_resource type="Script" path="res://scenes/enemy/melee_robot.gd" id="1_cwtgm"]
+[ext_resource type="Texture2D" uid="uid://h31t1cih2ghm" path="res://assets/temp32.png" id="2_swhwj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7dkpb"]
+size = Vector2(30, 30)
+
+[node name="MeleeRobot" type="CharacterBody2D"]
+process_mode = 1
+collision_layer = 2
+collision_mask = 15
+script = ExtResource("1_cwtgm")
+
+[node name="Temp32" type="Sprite2D" parent="."]
+modulate = Color(0.654902, 0.921569, 1, 1)
+texture = ExtResource("2_swhwj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7dkpb")
